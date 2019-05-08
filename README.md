@@ -1,2 +1,2 @@
 # oii-ois
-Le mie soluzioni per i problemi delle olimpiadi italine singole e a squadre.
+Le mie soluzioni per i problemi delle olimpiadi italiane singole e a squadre.
