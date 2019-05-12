@@ -6,7 +6,9 @@ Di seguito spiegheremo brevemente come risolvere i quattro task della LUISSMAtic
 L'esercizio ci richiede di calcolare la massima massa muscolare che possiamo ottenere svolgendo determinati esercizi degli **N** proposti dal nostro allenatore.
 Ogni esercizio ci permette di acquisire **A<sub>i</sub>** massa muscolare.
 Non avendo un buon allenatore questo valore può essere negativo, quindi per massimizzare la somma basta sommare solo gli esercizi positivi.
+
 Complessità : **O(N)**
+
 Una implementazione in C++ è la seguente:
 
 ```c++
