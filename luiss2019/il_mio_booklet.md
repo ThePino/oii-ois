@@ -106,7 +106,7 @@ int main(){
 ```
 Un' altra soluzione è ordinare i rubinetti per il costo con cui dissetano una persona. Una volta finito un rubinetto il successivo sarà quello più economico. 
 
-Complessità : **O(N  * R log(R) )**
+Complessità : **O(N  + R log(R) )**
 
 ### Produzione di panini (`panini`) - Difficile
 
