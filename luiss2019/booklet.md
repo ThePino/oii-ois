@@ -6,7 +6,7 @@ Di seguito spiegheremo brevemente come risolvere i quattro task della LUISSMAtic
 L'esercizio ci richiede di calcolare la massima massa muscolare che possiamo ottenere svolgendo determinati esercizi degli `N` proposti dal nostro allenatore.
 Ogni esercizio ci permette di acquisire `A_{i}` massa muscolare.
 Non avendo un buon allenatore questo valore può essere negativo, quindi per massimizzare la somma basta sommare solo gli esercizi positivi.
-Complessità : `O(N)`
+Complessità : **O(N)**
 Una implementazione in C++ è la seguente:
 
 ```c++
@@ -44,7 +44,7 @@ Nello specifico di ogni rubinetto sappiamo:
 Dovendo spendere il meno possibile è facile capire che la miglior strategia è di spendere il meno possibile per dissetare una singola persona ogni volta. 
 Per farlo non facciamo nient altro che provare a dissetare la singola persona con ogni rubinetto presente a patto che possegga abbastanza cl.
 Il costo di un rubinetto è dato da quanti bicchieri sono neccessari per ottenere abbastanza cl del tipo di bevanda del rubinetto, per il suo costo.  
-Una volta trovato il rubinetto che ci fa spendere di meno aggiorniamo la quantità rimanente e ripetiamo il procedimento. Complessità : `O(N * R)`
+Una volta trovato il rubinetto che ci fa spendere di meno aggiorniamo la quantità rimanente e ripetiamo il procedimento. Complessità : **O(N * R)**
 Una implementazione in C++ è la seguente:
 ```c++
 #include <bits/stdc++.h>
@@ -125,7 +125,7 @@ Dovremmo poter memorizzare `1000 * 10^10` interi che sono 'solo' 37252,902984619
 Qua entra in gioco una piccola ottimizzazione fondamentale, la quantità di ripieno di un determinato tipo di panino è indipendente dalle altre. Dando un ordine alla preparazione dei panini possiamo facilmente identificare uno stato in una tabellla `N * M`.
 Potremo definrie la nostra programmazione dinamica come una semplice funzione ricorsiva che memorizza i risultati interemedi in cui in ogni stato prova a produrre tutti i panini che può in quella condizione salvando il massimo di ogni chiamata. La ricorsionse si interromperà nel caso in cui non si ha più impasto o siano finiti i tipi di panini.
 Per semplificare la stesura del codice consideriamo il tipo di panino vuoto avente infinito ripieno.
-Complessità : `O(N * M)`
+Complessità : **O(N * M)**
 Una implementazione in C++ è la seguente:
 
 ```c++
@@ -180,7 +180,7 @@ Un albero è un tipo particolare di grafo in cui sono presenti `N` nodi e `N - 1
 Per la risoluzione del problema possiamo avvalerci di questo grafo e tenere memorizzati due infomrazioni per ogni categoria. Se sono presenti docenti cinesi e inglesi. Una voltà fatto ciò possiamo risolvere il problema provando ogni combinaizione di categoria e per far ciò ci avvaliamo di una semplice dfs.
 Nella dfs ci portiamo i parametri *Nodo, padre, ita,cina,dista* che identificano il nodo, il nodo da cui siamo partiti in modo tale da non tornare indietro, se il nodo di partenza principale aveva docenti italiani e cinesi e la distanza con cui siamo giunti.
 In questo modo a ogni chiamata possiamo controllare se nel nodo giunto possiamo creare la coppia e salvare la distanza massima.
-Complessità : `O(M^2)`
+Complessità : **O(M^2)**
 Una implementazione in C++ è la seguente:
 ```c++
 #include <bits/stdc++.h>
