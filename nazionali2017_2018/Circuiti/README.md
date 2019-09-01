@@ -33,9 +33,9 @@ Esempi:
 
 | Codice                                                   | Effetto                                                      |
 | -------------------------------------------------------- | ------------------------------------------------------------ |
-| `tmp[0] = in[0] + in[1]`                                 | ![](/media/pino/pinodata/inf/guides/circuiti/somma_esempio0.png) |
-| `out[0] = in[0] + 0`                                     | ![](/media/pino/pinodata/inf/guides/circuiti/somma_esempio1.png) |
-| `tmp[0] = in[0] max in[1]`                               | ![](/media/pino/pinodata/inf/guides/circuiti/massimo_esempio0.png) |
+| `tmp[0] = in[0] + in[1]`                                 | ![](imgs/somma_esempio0.png) |
+| `out[0] = in[0] + 0`                                     | ![](imgs/somma_esempio1.png) |
+| `tmp[0] = in[0] max in[1]`                               | ![](imgs/massimo_esempio0.png) |
 | `tmp[0] = in[0] + in[1]`<br />`tmp[2] = tmp[0] + tmp[1]` | Errore: tmp[1] non è stato definito                          |
 
  Combinando i registri si definiscono i nuovi che saranno pronti per l'unità di tempo successiva. L'unità successiva corrisponderà al massimo delle unità dei tempo dei registri usati più uno.
@@ -137,7 +137,7 @@ Per realizzare il circuito di somma dobbiamo realizzare la somma di tutte le com
 
 Una prima soluzione è semplicemente sommare l'*i*-esimo registro con la somma precedente. Cosi avremo come tempo di calcolo ***O(N)*** e uso di processori ***O(N)*** ottenendo  `5.31`pt.  Come illustrato dall'immagine questa strategia non è ottimale per il tempo di calcolo richiesto. 
 
-![](/media/pino/pinodata/inf/guides/circuiti/somma_cattiva.png)
+![](imgs/somma_cattiva.png)
 
 ```c++
 void somma(int N, int C){
@@ -159,7 +159,7 @@ void somma(int N, int C){
 
 Per ottenere appieno i `30` pt dobbiamo ridurre il tempo di calcolo. Utilizzando il Segment Tree possiamo calcolare l'intera somma utilizzando un tempo di calcolo ***O( log2(N) )*** con un numero un poco più alto di processori. Notare che con questa strategia utilizziamo esattamente il tempo di calcolo ***C*** richiesto quindi nel nodo che rappresenta l'intero range bisogna utilizzare direttamente il registro *`out[]`*.
 
-![](/media/pino/pinodata/inf/guides/circuiti/somma_buona.png)
+![](imgs/somma_buona.png)
 
 ```c++
 // Somma 
@@ -213,7 +213,7 @@ Per realizzare il circuito prefissi bisogna calcolare ogni somma dall'indice 0 a
 
 Una prima soluzione, cosi come per le somme, si computano tutte le somme pian piano ottenendo `8.56` pt.
 
-![](/media/pino/pinodata/inf/guides/circuiti/prefissi_cattivo.png)
+![](imgs/prefissi_cattivo.png)
 
 ```c++
 void prefissi(int N, int C){
@@ -234,7 +234,7 @@ Per ottenere il punteggio massimo dobbiamo utilizzare il Segment Tree, cosi come
 1. Durante la creazione del Segment Tree si calcolano già determinati prefissi.
 2. La somma di un prefisso è data dalla somma di determinati range. Basta calcolarli una volta e non più volte per ogni interrogazione.
 
-![](/media/pino/pinodata/inf/guides/circuiti/prefissi_buono1.png)
+![](imgs/prefissi_buono1.png)
 
 ```c++
 // Prefissi 
@@ -386,7 +386,7 @@ Per il punteggio massimo dobbiamo utilizzare ancora una volta il Segment Tree pe
 
 In breve il massimo sotto array di un range è dato dal massimo sotto array del range sinistro, destro e la somma del miglior suffisso nel range sinistro e del migliore prefisso del range destro. Il miglior suffisso è dato dal massimo del miglior suffisso del range destro e la somma tra il range destro e il suffisso del nodo sinistro. Il miglior prefisso è dato dal massimo del miglior prefisso del range sinistro e la somma tra il prefisso del range destro e la somma del range sinistro.
 
-![](/media/pino/pinodata/inf/guides/circuiti/massimo_buono1.png)
+![](imgs/massimo_buono1.png)
 
 ```c++
 #include <bits/stdc++.h>
