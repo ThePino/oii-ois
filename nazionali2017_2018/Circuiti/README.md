@@ -6,6 +6,25 @@
 
 Circuiti è un problema output only cioè al partecipante viene richiesto solo di generare i file di output dai file di input consegnati. Quindi è possibile utilizzare qualsiasi linguaggio a patto che sia stato installato sulla macchina, come per esempio: C, C++, Java e Python. Questo tipo di valutazione apre altre strade per il risolutore permettendo una serie di vantaggi. Il più importante è che non si deve saper necessariamente risolvere l'istanza generale del problema ma solo quelle proposte nei file di input, permettendo la scrittura di soluzioni mirate e euristiche per determinati casi di test. Un'ulteriore vantaggio è dato dalla risorse "illimitate" per la soluzione del problema, non si è legati a rispettare vincoli di tempi d'esecuzione e di memoria. Bisogna però prestar attenzione che il tempo potrebbe essere vincolato dalla durata della gara e la memoria da quella che effettivamente il pc possiede. Una strategia che potrebbe adottare il risolutore potrebbe essere una soluzione a forza bruta che risolva più casi di test possibili per il tempo rimasto in modo tale da aggiudicarsi punti. È consigliato scrivere un programma che apre e chiude i file in modo tale da poter usufruire dell'output anche se il programma termini per una qualsiasi ragione. In casi più estremi in cui potrebbe non essere chiara una strategia è possibile risolvere  a mano, scrivendo su file di testo da qualsiasi editor  la soluzione di quel caso in modo da guadagnare punti. Nella guida noterete che le soluzioni naive prenderanno pochissimi punti quando un test case risolto correttamente a mano può garantire la bellezza di `10` pt.  Lo scarto di pochi punti può fare la differenza tra vincere o no!
 
+### Visualizer
+
+Nella categoria output only potrebbe essere fornito insieme ai file di input un visualizer, che permette di visualizzare effettivamente l'output prodotto. Nelle macchina messe a disposizione nelle gare ci sono già installati i software necessari, mentre se lo si sta provando fuori gara si ha bisogno di: 
+
+*  [LaTex](https://www.latex-project.org/get/)
+* [Asymptote](http://asymptote.sourceforge.net/)
+* [Python3](https://www.python.org/downloads/)
+* [zenity](https://pkgs.org/download/zenity) (linux), [zenity](https://github.com/kvaps/zenity-windows)(Windows, seguire la procedura indicata)
+* YAD (opzionale)
+
+Per utilizzare il visualizer si può utilizzare lo script in bash fornito oppure una lista di comandi shell:
+
+```bash
+py visualize.py < output.txt > vis.asy
+asy -f pdf vis.asy
+```
+
+Proseguendo la guida troverete delle immagine generate dal visualizer.
+
 ## Traccia
 
 Il problema richiede di realizzare 3 tipi diversi di circuiti: Somma, Prefissi, Massimo sottoarray. Per realizzare un circuito abbiamo a disposizione componenti e registri. I registri ci permettono di interfacciarci con l'input del circuito e con l'output; rispettivamente i registri di input vengono segnati con il nome  *`in[]`* , quelli di output vengono segnati con il nome *`out[]`*. Le componenti possono essere utilizzate come dei registri intermedi. I registi intermedi e quelli di output sono formati da esattamente **solo 2** ingressi. I registi intermedi hanno a disposizione infinite uscite mentre quelli di output **solo una**.  I registri quindi **sono** dei **vettori** indicizzati da `0` a `N - 1` (dove *N* è la dimensione del registro). Per combinare i registri abbiamo a disposizione **3** operazioni: somma, sottrazione e massimo. In una combinazione il risultato deve essere dato da **esattamente 2 ingressi** e ha un **solo output**. Gli ingressi posso essere benissimo altri registri o costanti intere.  Nella realizzazione dei circuiti dobbiamo rispettare determinati vincoli. Non dobbiamo utilizzare più di `1100` componenti (da questo numero sono esclusi i registri di input e output) e non dobbiamo utilizzare più di ***C*** unità di tempo chiamate cicli. Nella *i*-esima unità di tempo vengono utilizzate solo le componenti calcolate nelle scorse unità di tempo. 
@@ -15,6 +34,14 @@ Il problema richiede di realizzare 3 tipi diversi di circuiti: Somma, Prefissi, 
 Per conoscere il tipo di circuito dobbiamo leggere un'unica riga.
 
 Riga(1): i 3 interi *T*, *N*, *C*. Rispettivamente il tipo di circuito da realizzare, la dimensione del registro di input e il tempo massimo di calcolo.
+
+| T    | Tipo               |
+| ---- | ------------------ |
+| 1    | Somma              |
+| 2    | Prefissi           |
+| 3    | Massimo sottoarray |
+
+
 
 ### Formato dell'output
 
@@ -31,20 +58,30 @@ $$
 
 Esempi:
 
-| Codice                                                   | Effetto                                                      |
-| -------------------------------------------------------- | ------------------------------------------------------------ |
-| `tmp[0] = in[0] + in[1]`                                 | ![](/media/pino/pinodata/inf/guides/circuiti/somma_esempio0.png) |
-| `out[0] = in[0] + 0`                                     | ![](/media/pino/pinodata/inf/guides/circuiti/somma_esempio1.png) |
-| `tmp[0] = in[0] max in[1]`                               | ![](/media/pino/pinodata/inf/guides/circuiti/massimo_esempio0.png) |
-| `tmp[0] = in[0] + in[1]`<br />`tmp[2] = tmp[0] + tmp[1]` | Errore: tmp[1] non è stato definito                          |
+| Codice                                                   | Effetto                             |
+| -------------------------------------------------------- | ----------------------------------- |
+| `tmp[0] = in[0] + in[1]`                                 | ![](imgs/somma_esempio0.png)        |
+| `out[0] = in[0] + 0`                                     | ![](imgs/somma_esempio1.png)        |
+| `tmp[0] = in[0] max in[1]`                               | ![](imgs/massimo_esempio0.png)      |
+| `tmp[0] = in[0] + in[1]`<br />`tmp[2] = tmp[0] + tmp[1]` | Errore: tmp[1] non è stato definito |
 
  Combinando i registri si definiscono i nuovi che saranno pronti per l'unità di tempo successiva. L'unità successiva corrisponderà al massimo delle unità dei tempo dei registri usati più uno.
+
+### Esempio input/output
+
+| input   | output                                                       |
+| ------- | ------------------------------------------------------------ |
+| `1 4 3` | `tmp[0] = in[0] + in[1]`<br/>`tmp[1] = in[2] + in[3]`<br/>`out[0] = tmp[0] + tmp[1]` |
+
+Il risultato del visualizer del primo input.
+
+![](imgs/input_output.png)
 
 ## Funzioni ausiliare
 
 Prima di iniziare la risoluzione del problema consiglio di sviluppare 3 funzioni con dei relativi assert per evitare che si sommino valori non validi.
 
-1. newVar: Dovrà restituire il nome di un nuovo registro
+1. newVar: Dovrà restituire il nome di un nuovo registro intermedio.
 2. ADD: Dati in input 3 componenti *A*,*B*,*C* dovrà immagazzinare in *A* la somma tra *B* e C stampando l'operazione su file.
 3. MAX: Dati in input 3 componenti  *A*,*B*,*C* dovrà immagazzinare in *A* il massimo tra *B* e *C* stampando l'operazione su file.
 
@@ -137,7 +174,7 @@ Per realizzare il circuito di somma dobbiamo realizzare la somma di tutte le com
 
 Una prima soluzione è semplicemente sommare l'*i*-esimo registro con la somma precedente. Cosi avremo come tempo di calcolo ***O(N)*** e uso di processori ***O(N)*** ottenendo  `5.31`pt.  Come illustrato dall'immagine questa strategia non è ottimale per il tempo di calcolo richiesto. 
 
-![](/media/pino/pinodata/inf/guides/circuiti/somma_cattiva.png)
+![](imgs/somma_cattiva.png)
 
 ```c++
 void somma(int N, int C){
@@ -156,10 +193,13 @@ void somma(int N, int C){
 }
 ```
 
-
 Per ottenere appieno i `30` pt dobbiamo ridurre il tempo di calcolo. Utilizzando il Segment Tree possiamo calcolare l'intera somma utilizzando un tempo di calcolo ***O( log2(N) )*** con un numero un poco più alto di processori. Notare che con questa strategia utilizziamo esattamente il tempo di calcolo ***C*** richiesto quindi nel nodo che rappresenta l'intero range bisogna utilizzare direttamente il registro *`out[]`*.
 
-![](/media/pino/pinodata/inf/guides/circuiti/somma_buona.png)
+Tempo di calcolo: ***O(log<sub>2</sub>(N))***
+
+Numero componenti: ***O(N)***
+
+![](imgs/somma_buona.png)
 
 ```c++
 // Somma 
@@ -213,7 +253,7 @@ Per realizzare il circuito prefissi bisogna calcolare ogni somma dall'indice 0 a
 
 Una prima soluzione, cosi come per le somme, si computano tutte le somme pian piano ottenendo `8.56` pt.
 
-![](/media/pino/pinodata/inf/guides/circuiti/prefissi_cattivo.png)
+![](imgs/prefissi_cattivo.png)
 
 ```c++
 void prefissi(int N, int C){
@@ -234,7 +274,11 @@ Per ottenere il punteggio massimo dobbiamo utilizzare il Segment Tree, cosi come
 1. Durante la creazione del Segment Tree si calcolano già determinati prefissi.
 2. La somma di un prefisso è data dalla somma di determinati range. Basta calcolarli una volta e non più volte per ogni interrogazione.
 
-![](/media/pino/pinodata/inf/guides/circuiti/prefissi_buono1.png)
+Tempo di calcolo: ***O(log2(N))***
+
+Componenti: ***O( N log<sub>2</sub>(N))***
+
+![](imgs/prefissi_buono1.png)
 
 ```c++
 // Prefissi 
@@ -384,9 +428,20 @@ Una prima soluzione sarebbe utilizzare l' algoritmo di [Kadane](https://en.wikip
 
 Per il punteggio massimo dobbiamo utilizzare ancora una volta il Segment Tree per poter calcolare il massimo sottoarray. Un esercizio simile è presente sulla [piattaforma di allenamento](https://training.olinfo.it/#/task/rangetree3/statement), se si vuole provare a risolverlo prima di adoperarlo per circuiti. Se si vuole una spiegazione molto più dettagliata questo è un [articolo](https://www.geeksforgeeks.org/maximum-subarray-sum-given-range/). 
 
-In breve il massimo sotto array di un range è dato dal massimo sotto array del range sinistro, destro e la somma del miglior suffisso nel range sinistro e del migliore prefisso del range destro. Il miglior suffisso è dato dal massimo del miglior suffisso del range destro e la somma tra il range destro e il suffisso del nodo sinistro. Il miglior prefisso è dato dal massimo del miglior prefisso del range sinistro e la somma tra il prefisso del range destro e la somma del range sinistro.
+Per calcolare il massimo sottoarray di in range abbiamo bisogno delle seguenti informazioni sul range:
 
-![](/media/pino/pinodata/inf/guides/circuiti/massimo_buono1.png)
+* Somma: La somma del range
+* Prefisso: il prefisso più alto del range
+* Suffisso: Il suffisso più alto del range.
+* Massimo sottoarray: Il massimo sottoarray per ogni range.
+
+Grazie al Segment Tree dividiamo i nostri intervalli in due fin quando non rappresenteranno un unico elemento. Nel caso in cui il range rappresenti l'unico elemento la somma, il prefisso, il suffisso e il massimo sottoarray sono rappresentanti dall'elemento stesso. Altrimenti la somma è rappresentata dalla somma dei due range (che chiamerò sinistro e destro); Il prefisso dal massimo del prefisso del nodo sinistro e la somma del prefisso del range destra e la somma totale del range sinistro; il suffisso dal massimo del suffisso del range sinistro e la somma totale del range destro; IL massimo sottoarray dal massimo dei due sottoarray del range sinistro e destro e la somma dal suffisso del range sinistro e prefisso del range destro.
+
+Tempo di calcolo: ***O(log2(N))***
+
+Componenti: ***O( 4N )***
+
+![](imgs/massimo_buono1.png)
 
 ```c++
 #include <bits/stdc++.h>
@@ -850,6 +905,7 @@ def getOut(Q, name = None):
         dp[tmp] = name
     add(dp[tmp], somma[tmp[len(tmp) - 1]], getOut(Q, None))
     return dp[tmp]
+
 
 
 def solvePrefix(N, C):
