@@ -58,24 +58,12 @@ $$
 
 Esempi:
 
-<<<<<<< HEAD
 | Codice                                                   | Effetto                             |
 | -------------------------------------------------------- | ----------------------------------- |
 | `tmp[0] = in[0] + in[1]`                                 | ![](imgs/somma_esempio0.png)        |
 | `out[0] = in[0] + 0`                                     | ![](imgs/somma_esempio1.png)        |
 | `tmp[0] = in[0] max in[1]`                               | ![](imgs/massimo_esempio0.png)      |
 | `tmp[0] = in[0] + in[1]`<br />`tmp[2] = tmp[0] + tmp[1]` | Errore: tmp[1] non è stato definito |
-=======
-| Codice                                                   | Effetto                                                      |
-| -------------------------------------------------------- | ------------------------------------------------------------ |
-| `tmp[0] = in[0] + in[1]`                                 | ![](imgs/somma_esempio0.png) |
-| `out[0] = in[0] + 0`                                     | ![](imgs/somma_esempio1.png) |
-| `tmp[0] = in[0] max in[1]`                               | ![](imgs/massimo_esempio0.png) |
-| `tmp[0] = in[0] + in[1]`<br />`tmp[2] = tmp[0] + tmp[1]` | Errore: tmp[1] non è stato definito                          |
->>>>>>> 105379029934e06a216310be9db4c2cac046df82
-
- Combinando i registri si definiscono i nuovi che saranno pronti per l'unità di tempo successiva. L'unità successiva corrisponderà al massimo delle unità dei tempo dei registri usati più uno.
-
 ### Esempio input/output
 
 | input   | output                                                       |
@@ -203,14 +191,10 @@ void somma(int N, int C){
 ```
 
 Per ottenere appieno i `30` pt dobbiamo ridurre il tempo di calcolo. Utilizzando il Segment Tree possiamo calcolare l'intera somma utilizzando un tempo di calcolo ***O( log2(N) )*** con un numero un poco più alto di processori. Notare che con questa strategia utilizziamo esattamente il tempo di calcolo ***C*** richiesto quindi nel nodo che rappresenta l'intero range bisogna utilizzare direttamente il registro *`out[]`*.
-
-<<<<<<< HEAD
 Tempo di calcolo: ***O(log<sub>2</sub>(N))***
 
 Numero componenti: ***O(N)***
 
-=======
->>>>>>> 105379029934e06a216310be9db4c2cac046df82
 ![](imgs/somma_buona.png)
 
 ```c++
@@ -285,14 +269,10 @@ Per ottenere il punteggio massimo dobbiamo utilizzare il Segment Tree, cosi come
 
 1. Durante la creazione del Segment Tree si calcolano già determinati prefissi.
 2. La somma di un prefisso è data dalla somma di determinati range. Basta calcolarli una volta e non più volte per ogni interrogazione.
-
-<<<<<<< HEAD
-Tempo di calcolo: ***O(log2(N))***
+   Tempo di calcolo: ***O(log2(N))***
 
 Componenti: ***O( N log<sub>2</sub>(N))***
 
-=======
->>>>>>> 105379029934e06a216310be9db4c2cac046df82
 ![](imgs/prefissi_buono1.png)
 
 ```c++
@@ -451,14 +431,9 @@ Per calcolare il massimo sottoarray di in range abbiamo bisogno delle seguenti i
 * Massimo sottoarray: Il massimo sottoarray per ogni range.
 
 Grazie al Segment Tree dividiamo i nostri intervalli in due fin quando non rappresenteranno un unico elemento. Nel caso in cui il range rappresenti l'unico elemento la somma, il prefisso, il suffisso e il massimo sottoarray sono rappresentanti dall'elemento stesso. Altrimenti la somma è rappresentata dalla somma dei due range (che chiamerò sinistro e destro); Il prefisso dal massimo del prefisso del nodo sinistro e la somma del prefisso del range destra e la somma totale del range sinistro; il suffisso dal massimo del suffisso del range sinistro e la somma totale del range destro; IL massimo sottoarray dal massimo dei due sottoarray del range sinistro e destro e la somma dal suffisso del range sinistro e prefisso del range destro.
-
-<<<<<<< HEAD
 Tempo di calcolo: ***O(log2(N))***
 
 Componenti: ***O( 4N )***
-
-=======
->>>>>>> 105379029934e06a216310be9db4c2cac046df82
 ![](imgs/massimo_buono1.png)
 
 ```c++
